@@ -8,7 +8,8 @@ import Swal from 'sweetalert2';
 })
 export class ConsultaEnderecoServices {
 
-  private apiUrl = 'http://localhost:8080/geolocation';
+  //private apiUrl = 'http://localhost:8080/geolocation';
+  private apiUrl = 'https://geolocation-api-production.up.railway.app/geolocation';
 
   constructor(private http: HttpClient) { }
 
