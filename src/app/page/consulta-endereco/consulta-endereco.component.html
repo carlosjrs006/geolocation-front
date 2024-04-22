@@ -1,0 +1,81 @@
+<div class="container">
+  <div class="card mt-4 bg-white">
+    <div class="card-body" style="display: flex;    justify-content: space-between;
+    align-items: center; ">
+      <h3>Consulta endereço por coordernadas</h3>
+      <button class="btn btn-primary buttonConsulta" type="button" routerLink="/historico-consultas">
+        Historico Consultas
+      </button>
+    </div>
+  </div>
+
+  <div class="card mt-4 bg-white">
+    <div class="card-body">
+      <google-map
+        height="500px"
+        width="100%"
+        [zoom]="zoom"
+        [center]="center"
+        (mapClick)="addMarker($event)"
+      >
+      <map-marker
+      *ngIf="markers"
+      [position]="markers.position"
+    ></map-marker>
+
+        <map-info-window>{{ infoContent }}</map-info-window>
+      </google-map>
+    </div>
+  </div>
+
+  <div class="card mt-4 bg-white">
+    <div class="card-body">
+      <form class="formEndereco">
+        <div class="form-floating mb-3">
+          <input
+            type="text"
+            class="form-control"
+            name="longitude"
+            id="longitude"
+            [(ngModel)]="markers.position.lng"
+            (keyup)="onInputChange( $event,'lng')"
+          />
+          <label for="floatingInput">Longitude</label>
+        </div>
+        <div class="form-floating mb-3">
+          <input
+            type="text"
+            class="form-control"
+            name="latitude"
+            id="latitude"
+            [(ngModel)]="markers.position.lat"
+            (keyup)="onInputChange( $event,'lat')"
+          />
+          <label for="floatingInput">Latitude</label>
+        </div>
+
+        <button class="btn btn-primary buttonConsulta" type="button" (click)="consultaEndereco()">
+          Consultar Endereço
+        </button>
+      </form>
+    </div>
+  </div>
+</div>
+
+<div class="card mt-4 bg-white mb-4" *ngIf="responseConsultaEndereco">
+  <div class="card-body">
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">Endereço Completo:</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th scope="row">{{ this.responseConsultaEndereco }}</th>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+

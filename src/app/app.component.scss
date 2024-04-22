@@ -1,0 +1,12 @@
+.loader-container{
+  top: 50%;
+  display: flex;
+  position: fixed;
+  left: 50%;
+  z-index: 1;
+}
+
+.spinner-border{
+  width: 80px;
+    height: 80px;
+}
